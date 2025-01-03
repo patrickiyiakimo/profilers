@@ -24,7 +24,7 @@ export default function Profiles() {
   return (
     <main className="py-16">
       <div>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-20">
           {users.map((user) => (
             <li
               key={user.id}
@@ -53,9 +53,9 @@ export default function Profiles() {
                 href={`https://${user.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="mt-4 px-4 py-2 font-bold duration-700 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
-                Visit Website
+                View Details
               </a>
             </li>
           ))}
