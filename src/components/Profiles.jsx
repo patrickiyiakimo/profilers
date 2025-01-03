@@ -5,47 +5,57 @@ export default function Profiles() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.github.com/users")
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching GitHub users:", error);
+        console.error("Error fetching users:", error);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-center text-2xl py-10">Loading...</div>;
   }
 
   return (
-    <main>
-      <div className="py-16">
-        <h1 className="text-center text-4xl font-semibold mb-8">GitHub Users</h1>
+    <main className="py-16">
+      <div>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {users.map((user) => (
             <li
               key={user.id}
-              className="border rounded-lg shadow-lg p-4 flex flex-col items-center px-20"
+              className="border rounded-lg shadow-lg p-6 flex flex-col items-center bg-gray-100"
             >
-              <img src={user.avatar_url} alt={user.login} className="w-24 h-24 rounded-full mb-4" />
-              <h2 className="text-lg font-bold">{user.login}</h2>
+              {/* Placeholder image */}
+              <img
+                src={`https://i.pravatar.cc/150?img=${user.id}`}
+                alt={user.name}
+                className="w-24 h-24 rounded-full mb-4"
+              />
+              <h2 className="text-lg font-bold">{user.name}</h2>
               <p className="text-sm text-gray-500">
-                <strong>GitHub ID:</strong> {user.id}
+                <strong>Username:</strong> {user.username}
               </p>
               <p className="text-sm text-gray-500">
-                <strong>Type:</strong> {user.type}
+                <strong>Email:</strong> {user.email}
+              </p>
+              <p className="text-sm text-gray-500">
+                <strong>City:</strong> {user.address.city}
+              </p>
+              <p className="text-sm text-gray-500">
+                <strong>Phone:</strong> {user.phone}
               </p>
               <a
-                href={user.html_url}
+                href={`https://${user.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
-                View Profile
+                Visit Website
               </a>
             </li>
           ))}
