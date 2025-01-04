@@ -7,7 +7,7 @@ export default function UserDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${username}`)
+    fetch(`https://jsonplaceholder.typicode.com/users/${username}`)
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
